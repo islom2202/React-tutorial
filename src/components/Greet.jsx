@@ -1,0 +1,1 @@
+export const Greet = () => <h1>Hello Islom</h1>
