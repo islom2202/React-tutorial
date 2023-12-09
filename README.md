@@ -178,7 +178,7 @@ export default Welcome;
 ~~~
 
 ## 8. State
-Whereas the props are immutable , we use states instead.
+Whereas the props are immutable (unchangeable), we use states instead.
 #### 8.1. State in **Class Comonents**:
 In class component we use save state inside constructor and with super() call:
 ~~~
