@@ -1,6 +1,7 @@
 import React from 'react'
 import {Greet} from './components/Greet'
-import Welcome from './components/Class'
+import Class from './components/Class'
+import Welcome from './components/Welcome'
 export const App = () => {
   return (
     <div>
@@ -9,7 +10,8 @@ export const App = () => {
         <button>I will kill you islom</button>
       </Greet>
       <Greet name="Islom" heroName="Seeker"></Greet>
-      <Welcome name="Islom"/>
+      <Class name="Islom"/>
+      <Welcome/>
     </div>
   )
 }

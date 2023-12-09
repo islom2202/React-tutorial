@@ -103,7 +103,7 @@ export const Greet = () =>
 
 ## 7. Props (properties) - props, children 
 is an optional input, that our component can accept, that makes our component reusable and dynamic. <br>
-**Props cannot be changed <mark>(rule)</mark>** ⨉: <br>
+**Props are immutable and cannot be changed <mark>(rule)</mark>** ⨉: <br>
 ~~~
 export const Greet = (props) => {
   props.name = "new_Name" 
@@ -174,5 +174,37 @@ class Welcome extends Component {
     )
   }
 }
+export default Welcome;
+~~~
+
+## 8. State
+Whereas the props are immutable , we use states instead.
+#### 8.1. State in **Class Comonents**:
+In class component we use save state inside constructor and with super() call:
+~~~
+import React, {Component} from 'react'
+
+class Welcome extends Component {
+  constructor() {
+    super()
+    this.state = {
+      message: "Welcome to HomePage",
+    }
+  }
+  changeMessage() {
+    this.setState({
+      message: "Thank you for subscription",
+    })
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+        <button onClick={() => this.changeMessage()}>SUBSCRIBE</button>
+      </div>
+    )
+  }
+}
+
 export default Welcome;
 ~~~
