@@ -100,3 +100,79 @@ export const Greet = () =>
 - for --> htmlFor
 - onclick --> onClick
 - tabindex --> tabIndex
+
+## 7. Props (properties) - props, children 
+is an optional input, that our component can accept, that makes our component reusable and dynamic. <br>
+**Props cannot be changed <mark>(rule)</mark>** ⨉: <br>
+~~~
+export const Greet = (props) => {
+  props.name = "new_Name" 
+  return (...) 
+  }
+~~~
+
+#### 7.1 props - we usually give an input for it.
+1. We give the values in app as attributes (name, with values Bobojon, Dilnoza, Islom):
+~~~
+import React from 'react'
+import {Greet} from './components/Greet'
+export const App = () => {
+  return (
+    <div>
+      <Greet name="Bobojon" heroName="Harry Potter" />
+      <Greet name="Dilnoza" heroName="Seeker's heart"/>
+      <Greet name="Islom" heroName="Seeker"/>
+    </div>
+  )
+}
+
+~~~
+2. We access that attribute here as a **props** (which is an object, which contains attributes as properties):
+~~~
+export const Greet = (props) => <h1>Hello {props.name} - {props.heroName}</h1>
+~~~
+
+#### 7.1 children - it is usefull when the input could be optional (if we want we give children,if we don't want, we dont't give any children):
+1. App.jsx:
+~~~
+<Greet name="Bobojon" heroName="Harry Potter" > My friend</Greet>
+~~~
+2. Component:
+~~~
+export const Greet = (props) => {
+  return (
+    <div>
+      <h1>
+        Hello {props.name} - {props.heroName}
+      </h1>
+      {props.children}
+    </div>
+  )
+}
+~~~
+
+#### 7.2 Props in a Class Component ( we use 'this'):
+1. App.jsx:
+~~~
+import React from 'react'
+import Welcome from './components/Class'
+export const App = () => {
+  return (
+    <div>
+      <Welcome name="Islom"/>
+    </div>
+  )
+}
+~~~
+2. Comonent:
+~~~
+import React, {Component} from "react";
+class Welcome extends Component {
+  render(){
+    return (
+      <h1>{this.props.name}</h1>
+    )
+  }
+}
+export default Welcome;
+~~~

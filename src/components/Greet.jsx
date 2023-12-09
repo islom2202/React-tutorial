@@ -1,1 +1,10 @@
-export const Greet = () => <h1>Hello Islom</h1>
+export const Greet = (props) => {
+  return (
+    <div>
+      <h1>
+        Hello {props.name} - {props.heroName}
+      </h1>
+      {props.children}
+    </div>
+  )
+}
