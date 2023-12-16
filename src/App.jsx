@@ -1,7 +1,8 @@
 import React from 'react'
-import {Greet} from './components/Greet'
+import Greet from './components/Greet'
 import Class from './components/Class'
 import Welcome from './components/Welcome'
+import Counter from './components/Counter'
 export const App = () => {
   return (
     <div>
@@ -12,6 +13,7 @@ export const App = () => {
       <Greet name="Islom" heroName="Seeker"></Greet>
       <Class name="Islom"/>
       <Welcome/>
+      <Counter/>
     </div>
   )
 }

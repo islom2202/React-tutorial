@@ -208,3 +208,95 @@ class Welcome extends Component {
 
 export default Welcome;
 ~~~
+
+## 8. setState
+``setState`` hook in React has two arguments:
+  1. object - first argument
+  2. callback function - second argument, which runs right after the state is updated. Because the setState is asynchronous (but it my version it still works):
+  ~~~
+    increment = () => {
+    this.setState({counter:this.state.counter+=1})
+    console.log(this.state.counter)
+    }    
+  ~~~
+  ~~~
+   this.setState({counter: this.state.counter+=1},() => {
+      if (this.state.counter == 0) {
+        this.setState({ color: "black" })
+      }
+      if (this.state.counter > 0) {
+        this.setState({ color: "green" })
+      }
+      if (this.state.counter < 0) {
+        this.setState({ color: "red" })
+      }
+     });
+  ~~~
+## 9. destructurization
+There are two ways to extract the props values:
+  1. using ES6 feature ``{}``. In JavaScript we do something like this: 
+  ~~~
+  let obj = {
+  name: 'Islom'
+  }
+  let {name} = obj
+  name = 'bobo'
+  console.log(name);
+  ~~~
+  The same way in react we extract (name, heroName, ``children``):
+  ~~~
+  export const Greet = ({name, heroName, children}) => {
+  return (
+    <div>
+      <h1>
+        Hello {name} - {heroName}
+      </h1>
+      {children}
+    </div>
+  )
+}
+~~~
+2. Destructuring from props object
+~~~
+export const Greet = (props) => {
+  let {name, heroName, children} = props;
+  return (
+    <div>
+      <h1>
+        Hello {name} - {heroName}
+      </h1>
+      {children}
+    </div>
+  )
+}
+~~~
+ 2. 1 Destructuring in class components (we use just ``this``):
+ ~~~
+ class Greet extends Component {
+  render() {
+  let { name, heroName, children } = this.props
+    return (
+      <div>
+        <h1>Hello {name} - {heroName}</h1>
+      </div>
+    )
+  }
+}
+export default Greet;
+~~~
+``State-destructuring`` happens in the same way as in ES6 :
+~~~
+let {state1, state2} = this.state
+~~~
+
+## 10. Event handling
+There are two ways of handling events in React:
+:
+ 1. With event callback function (we use function call ``"()"``):
+  ~~~
+  <button onClick={()=>this.increment()>increment +</button> 
+  ~~~
+ 2. Without event callback function (we **do not use function call**):
+  ~~~
+  <button onClick={this.increment}>increment +</button>
+  ~~~
