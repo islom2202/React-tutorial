@@ -1,6 +1,12 @@
-let obj = {
-  name: 'Islom'
-}
-let {name} = obj
-name = 'bobo'
-console.log(name);
+// let obj = {
+//   firstname: 'John',
+//   lastname: 'Smith',
+//   fullname: function() {
+//     console.log(this.firstname + ' ' + this.lastname);
+//   }
+// }
+// obj.fullname()
+
+
+
+

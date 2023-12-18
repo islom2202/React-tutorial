@@ -300,3 +300,20 @@ There are two ways of handling events in React:
   ~~~
   <button onClick={this.increment}>increment +</button>
   ~~~
+
+#### 10.1 Binding Event Handlers
+Let us first look at "``this``" keyword in javascript, which refers to the parent object:
+~~~
+let obj = {
+  firstname: "John",
+  lastname: "Smith",
+  fullname:{
+    firstname: 'Islom', 
+    lastname: 'Saidaliev', 
+    fullname: function(){
+      console.log(this.firstname + " " + this.lastname)
+    }
+  }
+}
+obj.fullname.fullname() // Islom Saidaliev
+~~~
