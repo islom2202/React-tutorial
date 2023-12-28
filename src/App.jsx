@@ -3,6 +3,7 @@ import Greet from './components/Greet'
 import Class from './components/Class'
 import Welcome from './components/Welcome'
 import Counter from './components/Counter'
+import EventBind from './components/EventBind'
 export const App = () => {
   return (
     <div>
@@ -14,6 +15,7 @@ export const App = () => {
       <Class name="Islom"/>
       <Welcome/>
       <Counter/>
+      <EventBind />
     </div>
   )
 }

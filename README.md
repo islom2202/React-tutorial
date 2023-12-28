@@ -289,7 +289,7 @@ export default Greet;
 let {state1, state2} = this.state
 ~~~
 
-## 10. Event handling
+## 10. Event handling 
 There are two ways of handling events in React:
 :
  1. With event callback function (we use function call ``"()"``):
@@ -301,7 +301,7 @@ There are two ways of handling events in React:
   <button onClick={this.increment}>increment +</button>
   ~~~
 
-#### 10.1 Binding Event Handlers
+#### 10.1 Binding Event Handlers (approaches: 1.bind, 2.arrow callback, 3.binding in the constrcutor)
 Let us first look at "``this``" keyword in javascript, which refers to the parent object:
 ~~~
 let obj = {
@@ -317,3 +317,136 @@ let obj = {
 }
 obj.fullname.fullname() // Islom Saidaliev
 ~~~
+**bind** - With the bind() method, an object can borrow a method from another object in js (and React):
+~~~
+let name = {
+  firstname: 'Islom',
+  lastname: 'Saidaliev',
+  fullname: function(){
+     return this.firstname + ' ' + this.lastname
+  }
+}
+let member = {
+  firstname: 'Dilnoza',
+  lastname: 'Karimova',
+}
+console.log(name.fullname.bind(member)()) // Dilnoza Karimova
+~~~
+Here are React-version APPROACHES of that (in arrow functions it works without it):
+1. First example (with bind in render):
+~~~
+import React, { Component } from 'react'
+
+ class EventBind extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      message: 'Hello!'
+    }
+  }
+  messageHandler(){
+    this.setState({ message: 'GoodBye!' })
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+        <button onClick={this.messageHandler.bind(this)}>Click</button>
+      </div>
+    )
+  }
+}
+
+export default EventBind
+~~~
+2. Second example (with arrow callback in render):
+~~~
+<button onClick={() => this.messageHandler()}>Click</button>
+~~~
+3. Third approach (binding in the constrcutor, and this is RECOMMENDED):
+~~~
+import React, { Component } from 'react'
+
+ class EventBind extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      message: 'Hello!'
+    }
+    this.messageHandler = this.messageHandler.bind(this)
+  }
+  messageHandler = () => {
+    this.setState({ message: 'GoodBye!' })
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+        <button onClick={this.messageHandler}>Click</button>
+      </div>
+    )
+  }
+}
+
+export default EventBind
+~~~
+4. Arrow function (not in render, which I like the most and is also RECOMMENDED):
+~~~
+import React, { Component } from 'react'
+
+ class EventBind extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      message: 'Hello!'
+    }
+    this.messageHandler = this.messageHandler
+  }
+  messageHandler = () =>{
+    this.setState({ message: 'GoodBye!' })
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+        <button onClick={this.messageHandler}>Click</button>
+      </div>
+    )
+  }
+}
+
+export default EventBind
+~~~
+<br>
+..................... 
+<br>
+
+I have learned two ways to **build our own methods** alongside learning bind handler:
+1. ``inside paranthesis`` like this:
+      ~~~
+      let num = 1
+      console.log(typeof Number(num)); // number
+      ~~~
+      Here is an example:
+      ~~~
+      let methods = {
+        capitalize: function(str){
+          return str[0].toUpperCase() + str.slice(1)
+        }
+      }
+      let capitalize = methods.capitalize
+      let name = "dilnoza"
+      console.log(capitalize(name));
+      ~~~
+2. With ``String.prototype`` (like this: name.capitalize()):
+      ~~~
+      let methods = {
+        capitalize: String.prototype.capitalize = function(){
+          return this[0].toUpperCase() + this.slice(1);
+        }
+      }
+      let capitalize = methods.capitalize.capitalize
+      let name = 'dilnoza'
+      console.log(name.capitalize());
+      ~~~
+## 11. Methods as props
